@@ -15,6 +15,19 @@ import com.example.springmall.sample.vo.Sample;
 public class SampleService {
 	@Autowired
 	private SampleMapper sampleMapper;
+	
+	//4-1 수정폼
+	public Sample getSample(int sampleNo) {
+		return sampleMapper.selectOne(sampleNo);
+	}
+	//4-2 수정액션
+	public int modifySample(Sample sample) {
+		return sampleMapper.updateSample(sample);
+	}
+	//
+	public int addSample(Sample sample) {
+		return sampleMapper.insertSample(sample);
+	}
 
 	public List<Sample> getSampleAll(HashMap<String, Object>map){
 		// 페이징 관련 코드
@@ -30,9 +43,9 @@ public class SampleService {
 		map.put("lastPage", lastPage);
 		return sampleMapper.selectSampleAll(map);
 	}
-	
 	//2
 	public int removeSample(int sampleNo) {
 		return sampleMapper.deleteSample(sampleNo);
 	}
+	
 }
